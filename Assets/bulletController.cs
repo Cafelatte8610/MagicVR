@@ -14,7 +14,7 @@ public class bulletController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletTimer();
+        bulletTimer().AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
     }
 
     // Update is called once per frame

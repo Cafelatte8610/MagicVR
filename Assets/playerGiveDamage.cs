@@ -27,7 +27,7 @@ public class playerGiveDamage : MonoBehaviour
         {
             if(!candamage) return;
             pc.givedamage();
-            ddamagecast();
+            ddamagecast().AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
 
             // if (other.gameObject.GetComponent<EnemyController>().isAttacking)
             // {

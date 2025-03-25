@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class EnemyController : MonoBehaviour, IDamagable
 {
@@ -79,7 +80,7 @@ public class EnemyController : MonoBehaviour, IDamagable
     // 被ダメージ処理
     public void AddDamage(int value)
     {
-        hpuiManager.HPViewer(value);
+        hpuiManager.HPViewer(value).AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
     }
     // 死亡時の処理
     public void Dead()

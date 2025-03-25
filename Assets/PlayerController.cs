@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float stoppingTime = 0.0f;
     [SerializeField] private float shotRate = 0.5f;
     [SerializeField] private GameObject[] magic;
+    [SerializeField] private EnemySponer enemySponer;
+    [SerializeField] private GameManager GM;
     public GameObject staf;
     private Vector3 previousPosition;
     private bool isWaving = false;
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour
     int maxHp = 100;
     bool isDead = false;
     [SerializeField] private int score;
-
+    public HPUIManager hpuim;
     [SerializeField] private TextMeshProUGUI scoreText;
     // Start is called before the first frame update
     public GameObject DeadP;
@@ -47,6 +49,21 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        hpuim.Initialize();
+        DeadP.SetActive(false);
+        isDead = false;
+        score = 0;
+        canShot = true;
+        psmru.IsActive = false;
+        waveThersTime = 0.0f;
+        Hp = maxHp;
+    }
+
+    public void Initialize()
+    {
+        hpuim.Initialize();
+        DeadP.SetActive(false);
+        isDead = false;
         score = 0;
         canShot = true;
         psmru.IsActive = false;
@@ -58,6 +75,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (isDead) return;
+        if (hp <= 0)
+        {
+            Dead();
+        }
         if (leftHand.IsTracked)
         {
             DetectWaveAndStop();
@@ -82,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         magicShapes[2] = false;
     }
-    public async UniTask spellFire(int id)
+    public void spellFire(int id)
     {
 
         GameObject magicObj = Instantiate(magic[id], magicPoint.position, Quaternion.LookRotation(staf.transform.up));
@@ -118,24 +139,28 @@ public class PlayerController : MonoBehaviour
                 waveThersTime = 0.0f;
                 psmru.IsActive = false;
                 psmru.UpdateMeshEffect();
-
+        
             }
             else
             {
                 stoppingTime += Time.deltaTime;
             }
         }
-
+        
         if (isWaving)
         {
             waveThersTime += Time.deltaTime;
         }
+        // if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
+        // {
+        //     magicCast(waveThersTime);
+        // }
     }
 
     private void magicCast(float casttime)
     {
         if(!canShot) return;
-        coolTime();
+        coolTime().AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
         if (leftHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) > 0.8f)
         {
             spellFire(0);
@@ -152,11 +177,11 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public HPUIManager hpuim;
+
     
     public void givedamage()
     {
-        hpuim.HPViewer(10);
+        hpuim.HPViewer(10).AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
     }
 
     public void geinScore(int value)
@@ -168,6 +193,8 @@ public class PlayerController : MonoBehaviour
     {
         DeadP.SetActive(true);
         isDead = true;
+        enemySponer.endSpawn();
+        GM.EndGame();
     }
 
     async UniTask coolTime()

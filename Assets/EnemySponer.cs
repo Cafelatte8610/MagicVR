@@ -15,8 +15,6 @@ public class EnemySponer : MonoBehaviour
     public float span = 10f;
     private float currentTime = 10f;
     private bool canSpawn = false;
-    public GameObject StartUI;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +44,6 @@ public class EnemySponer : MonoBehaviour
     public void startSpawn()
     {
         canSpawn = true;
-        StartUI.SetActive(false);
     }
     
     public void endSpawn()

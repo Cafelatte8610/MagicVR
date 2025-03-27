@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool canShot = true;
     public Transform magicPoint;
     private bool[] magicShapes={false,false,false};
-    public PSMeshRendererUpdater psmru;
+    // public PSMeshRendererUpdater psmru;
     int hp = 0;
     [SerializeField, Min(0)]
     int maxHp = 100;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         isDead = false;
         score = 0;
         canShot = true;
-        psmru.IsActive = false;
+        // psmru.IsActive = false;
         waveThersTime = 0.0f;
         Hp = maxHp;
     }
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         isDead = false;
         score = 0;
         canShot = true;
-        psmru.IsActive = false;
+        // psmru.IsActive = false;
         waveThersTime = 0.0f;
         Hp = maxHp;
     }
@@ -122,11 +122,11 @@ public class PlayerController : MonoBehaviour
         if (velocity.magnitude > waveThreshold)
         {
             isWaving = true;
-            if (!psmru.IsActive)
-            {
-                psmru.IsActive = true;
-                psmru.UpdateMeshEffect();
-            }
+            // if (!psmru.IsActive)
+            // {
+            //     psmru.IsActive = true;
+            //     psmru.UpdateMeshEffect();
+            // }
             stoppingTime = 0.0f;
         }
         // 手が止まったか確認
@@ -137,8 +137,8 @@ public class PlayerController : MonoBehaviour
                 isWaving = false;
                 magicCast(waveThersTime);
                 waveThersTime = 0.0f;
-                psmru.IsActive = false;
-                psmru.UpdateMeshEffect();
+                // psmru.IsActive = false;
+                // psmru.UpdateMeshEffect();
         
             }
             else

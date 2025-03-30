@@ -6723,7 +6723,7 @@ RectTransform:
   m_GameObject: {fileID: 1723531736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.01}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1.03}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 880139295}
@@ -8654,27 +8654,27 @@ PrefabInstance:
     - target: {fileID: 4286952632347164479, guid: 575aa706bd4a4bc4395439ee272db791,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6754656
+      value: 0.69364005
       objectReference: {fileID: 0}
     - target: {fileID: 4286952632347164479, guid: 575aa706bd4a4bc4395439ee272db791,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.20915608
+      value: -0.13734446
       objectReference: {fileID: 0}
     - target: {fileID: 4286952632347164479, guid: 575aa706bd4a4bc4395439ee272db791,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.20915608
+      value: -0.13734446
       objectReference: {fileID: 0}
     - target: {fileID: 4286952632347164479, guid: 575aa706bd4a4bc4395439ee272db791,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6754656
+      value: 0.69364005
       objectReference: {fileID: 0}
     - target: {fileID: 4286952632347164479, guid: 575aa706bd4a4bc4395439ee272db791,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -34.41
+      value: -22.4
       objectReference: {fileID: 0}
     - target: {fileID: 4418222263723313958, guid: 575aa706bd4a4bc4395439ee272db791,
         type: 3}
@@ -8817,6 +8817,11 @@ PrefabInstance:
       propertyPath: enemySponer
       value: 
       objectReference: {fileID: 541764923}
+    - target: {fileID: 6957631892834379166, guid: 575aa706bd4a4bc4395439ee272db791,
+        type: 3}
+      propertyPath: stopTimeHold
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 6957631892834379166, guid: 575aa706bd4a4bc4395439ee272db791,
         type: 3}
       propertyPath: waveThreshold
